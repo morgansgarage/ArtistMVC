@@ -1,0 +1,42 @@
+@{ ViewData["Title"] = "Artists"; }
+
+@model IEnumerable<ArtistMVC.Models.ArtistModel>
+
+<h2>Artists</h2>
+
+@* Create a table based on the ArtistModel *@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ArtistId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpotifyId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArtistId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpotifyId)
+                </td>
+                <td>
+                    @Html.ActionLink("Description", "Description", new { id = item.SpotifyId }) |
+                    <a href=@item.SpotifyUrl target="_blank">Spotify Artist Home</a>
+                </td>
+            </tr>
+        }
+    </tbody>
